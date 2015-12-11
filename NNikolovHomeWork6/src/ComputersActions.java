@@ -49,6 +49,8 @@ public class ComputersActions {
 		
 		System.out.println("Mac's config after occuping memory : ");
 		mac.printConfig();
+
+		System.out.println("Just to test GitHub");
 		
 		sc.close();
 
