@@ -1,0 +1,23 @@
+
+public class StudentGroup {
+	String groupSubject;
+	Student[] students;
+	private int freePlaces;
+	
+	StudentGroup() {
+		students = new Student[5];
+		freePlaces = 5;
+	}
+	
+	StudentGroup(String subject){
+		this();
+		this.groupSubject = subject;
+	}
+	
+	public void addStudent(){
+		if(this.groupSubject == ){
+			
+		}
+	}
+
+}

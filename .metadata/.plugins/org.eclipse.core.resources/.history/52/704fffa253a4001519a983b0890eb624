@@ -1,0 +1,59 @@
+
+public class Employee {
+	private String name;
+	private Task currentTask;
+	private int hoursLeft;
+	
+	public Employee(String name) {
+		this.name = name;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		while(name == null && name == ""){
+			System.out.println("Please enter a valid name");
+		}
+		this.name = name;
+	}
+
+	public Task getCurrentTask() {
+		return currentTask;
+	}
+
+	public void setCurrentTask(Task currentTask) {
+		this.currentTask = currentTask;
+	}
+
+	public int getHoursLeft() {
+		return hoursLeft;
+	}
+
+	public void setHoursLeft(int hoursLeft) {
+		while(hoursLeft < 0){
+			System.out.println("Please enter a positive number for hours");
+		}
+		this.hoursLeft = hoursLeft;
+	}
+	
+	public void work(){
+		if(this.currentTask.getWorkingHours() >= this.hoursLeft){
+			this.currentTask.setWorkingHours(this.currentTask.getWorkingHours() - this.hoursLeft );
+			this.hoursLeft = 0;
+		} else {
+			this.currentTask.setWorkingHours(0);
+			this.setHoursLeft(this.getHoursLeft() - this.currentTask.getWorkingHours());
+		}
+		this.showReport();
+	}
+	
+	public void showReport(){
+		System.out.println("The name of the employee is " + this.getName());
+		System.out.println("The current task he's working on is " + this.currentTask.getName());
+		System.out.println("This employee's hourse left for today : " + this.getHoursLeft());
+		System.out.println("The required hours of work for the task to be complete : " + this.getCurrentTask().getWorkingHours());
+	}
+
+}

@@ -1,0 +1,86 @@
+public class Student {
+
+	private String name;
+	public String subject;
+	public double grade;
+	private int yearInCollege;
+	private int age;
+	private boolean isDegree;
+	private double money;
+
+	public String getName() {
+		return name;
+	}
+
+	public String getSubject() {
+		return subject;
+	}
+
+	public double getGrade() {
+		return grade;
+	}
+
+	public int getYearInCollege() {
+		return yearInCollege;
+	}
+
+	public int getAge() {
+		return age;
+	}
+
+	Student() {
+		name = "unnamed";
+		grade = 4.0;
+		yearInCollege = 1;
+		isDegree = false;
+		money = 0;
+		subject = "";
+	}
+
+	Student(String name, String subject, int age) {
+		this();
+		this.name = name;
+		this.subject = subject;
+		this.age = age;
+
+	}
+
+	public void upYear() {
+
+		if (this.yearInCollege < 4) {
+			yearInCollege++;
+			System.out.println("The student is now in " + this.yearInCollege + " year");
+		} else {
+			System.out.println("Sorry, the student is last year in collage");
+		}
+		if (this.yearInCollege == 4) {
+			isDegree = true;
+		}
+	}
+
+	public void recieveScholarship(double amount, double min) {
+		if (this.grade >= min) {
+			this.money += amount;
+			System.out.println("Scholarship recieved and " + this.name + "'s budgets is now " + this.money + "$");
+		} else {
+			System.out.println("Sorry, your grade is not enough for scholarship");
+		}
+	}
+
+	public void printStudentInfo() {
+		System.out.println(this.getName());
+		if (this.age == 0) {
+			System.out.println("unknown age");
+		} else {
+			System.out.println(this.getAge() + " years old");
+		}
+		if (this.subject.equals("")) {
+			System.out.println("has no speciality");
+		} else {
+			System.out.println(this.getSubject());
+		}
+		System.out.println(this.getYearInCollege() + "th year in collage");
+		System.out.println(this.grade);
+	}
+
+}

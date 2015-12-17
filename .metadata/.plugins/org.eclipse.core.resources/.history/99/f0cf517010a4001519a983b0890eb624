@@ -1,0 +1,71 @@
+public class Student {
+	 
+	
+	private String name;
+	public String subject;
+	public double grade;
+	private int yearInCollege;
+	private int age;
+	private boolean isDegree;
+	private double money;
+	
+	public String getName() {
+		return name;
+	}
+
+	public String getSubject() {
+		return subject;
+	}
+
+	public double getGrade() {
+		return grade;
+	}
+
+	public int getYearInCollege() {
+		return yearInCollege;
+	}
+
+	public int getAge() {
+		return age;
+	}
+
+	
+	Student(){
+		grade = 4.0;
+		yearInCollege = 1;
+		isDegree = false;
+		money = 0;
+	}
+	
+	Student(String name, String subject, int age, double money){
+		this();
+		this.name = name;
+		this.subject = subject;
+		this.age = age;
+		this.money = money;
+		
+	}
+	
+	public void upYear(){
+		
+		if(this.yearInCollege < 4){
+			yearInCollege++;
+		}
+		else{
+			System.out.println("Sorry, the student is last year in collage");
+		}
+		if(this.yearInCollege == 4){
+			isDegree = true; 
+		}
+	}
+	
+	public void recieveScholarship(double amount, double min){
+		if(this.grade >= min){
+			this.money += amount;
+		}
+		else{
+			System.out.println("Sorry, your grade is not enough for scholarship");
+		}
+	}
+
+}

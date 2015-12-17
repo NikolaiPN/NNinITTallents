@@ -1,0 +1,12 @@
+
+public class Collage {
+	public static void main (String[] ags){
+		createStudent();
+		
+	}
+	
+	static void addStudent(){
+		
+	}
+
+}

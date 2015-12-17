@@ -1,23 +1,21 @@
 public class GSM {
 	String model;
-	boolean hasSimCard;
-	String simMobileNumber;
-	int outgoingCallsDuration;
+	private boolean hasSimCard;
+	private String simMobileNumber;
+	private int outgoingCallsDuration;
 	Call lastIncomingCall = new Call();
 	Call lastOutgoingCall = new Call();
 
 	// Inserting Sim Card
 
 	void insertSimCard(String newSimMobileNumber) {
-		if (hasSimCard) {
-			System.out.println("The GSM already has a Sim card");
+		if (newSimMobileNumber.length() != 10 || !(newSimMobileNumber.startsWith("08"))
+				|| !(newSimMobileNumber.matches("\\d+"))) {
+			System.out.println("The Sim card you have entered is incorrect");
 		} else {
-			if (newSimMobileNumber.length() != 10 || !(newSimMobileNumber.startsWith("08"))) {
-				System.out.println("The Sim card you have entered is incorrect");
-			} else {
-				hasSimCard = true;
-				simMobileNumber = newSimMobileNumber;
-			}
+			hasSimCard = true;
+			simMobileNumber = newSimMobileNumber;
+			System.out.println("The mobile number of " + this.model + " is : " + newSimMobileNumber);
 		}
 	}
 
@@ -43,50 +41,47 @@ public class GSM {
 				} else {
 					System.out.println("The caller and reciever ids can not be the same");
 				}
-			}
-			else{
+			} else {
 				System.out.println("One of the GSMs has no Sim Card");
 			}
-		}
-		else{
+		} else {
 			System.out.println("The call duration is not correct");
 		}
 	}
-	
+
 	// Printing info about the last outgoing call
-	
-	void printInfoForTheLastOutgoingCall(){
-		if(this.lastOutgoingCall != null){
-		System.out.println("The recievers number is: " + lastOutgoingCall.receiver) ;
-		System.out.println("The duration was: " + lastOutgoingCall.duration);
-		System.out.println("The price for the call was: " + lastOutgoingCall.priceForAMin * lastOutgoingCall.duration);
-		System.out.println("---------------------------------------------------------------------");
-		}
-		else{
+
+	void printInfoForTheLastOutgoingCall() {
+		if (this.lastOutgoingCall != null) {
+			System.out.println("Info for the last Outgoing Call of " + this.model);
+			System.out.println("The recievers number is: " + lastOutgoingCall.receiver);
+			System.out.println("The duration was: " + lastOutgoingCall.duration);
+			System.out.println("The price for the call was: " + Call.priceForAMin * lastOutgoingCall.duration);
+			System.out.println("---------------------------------------------------------------------");
+		} else {
 			System.out.println("There are no Outgoing calls yet");
 		}
 	}
-	
+
 	// Printing info about the last incoming call
-	
-	void printInfoForLastIncomingCall(){
-		if(this.lastIncomingCall != null){
-		System.out.println("The callers number is: " + lastIncomingCall.caller) ;
-		System.out.println("The duration was: " + lastIncomingCall.duration);
-		System.out.println("The price for the call was: " + lastIncomingCall.priceForAMin * lastIncomingCall.duration);
-		System.out.println("---------------------------------------------------------------------");
-		}
-		else{
+
+	void printInfoForLastIncomingCall() {
+		if (this.lastIncomingCall != null) {
+			System.out.println("Info for the last Incoming Call of " + this.model);
+			System.out.println("The callers number is: " + lastIncomingCall.caller);
+			System.out.println("The duration was: " + lastIncomingCall.duration);
+			System.out.println("The price for the call was: " + Call.priceForAMin * lastIncomingCall.duration);
+			System.out.println("---------------------------------------------------------------------");
+		} else {
 			System.out.println("There are no incoming calls yet");
 		}
 	}
-	
+
 	// Getting the price for all outgoing calls
-	
-	void getSumForCalls(){
-		int result = outgoingCallsDuration * (int)lastOutgoingCall.priceForAMin;
-		System.out.println(result);
+
+	String getSumForCalls() {
+		double result = this.outgoingCallsDuration * Call.priceForAMin;
+		return "The sum for all outgoing calls for gsm : " + this.model + " is :  " + result + " $";
 	}
-	
 
 }

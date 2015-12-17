@@ -1,0 +1,93 @@
+
+public class StudentGroup {
+	String groupSubject;
+	Student[] students;
+	private int freePlaces;
+
+	// Тъй като има възможност студент, който е първи курс и не е специализирал
+	// все още да няма subject ,а ние имаме възможност да
+	// създадем и група без subject ще оставя възможност да се добавят студенти
+	// без subjects само в групи без subject
+
+	StudentGroup() {
+		students = new Student[5];
+		freePlaces = 5;
+		groupSubject = "";
+	}
+
+	StudentGroup(String subject) {
+		this();
+		this.groupSubject = subject;
+	}
+
+	public void addStudent(Student student) {
+		if (this.freePlaces >= 1) {
+			if (this.groupSubject.equalsIgnoreCase(student.subject)) {
+				this.students[students.length - this.freePlaces] = student;
+				this.freePlaces--;
+				if (this.groupSubject.equals("")) {
+					System.out.println(student.getName() + " added to the preparational group ");
+				} else {
+					System.out.println(student.getName() + " added to group : " + this.groupSubject);
+				}
+			} else {
+				System.out.println("Sorry the group subject doesn't match the students subject");
+			}
+		} else {
+			System.out.println("Sorry there are no free places in this group");
+		}
+	}
+
+	public void emptyGroup() {
+		for (int i = 0; i < this.students.length; i++) {
+			this.students[i] = null;
+			System.out.println("The group : " + this.groupSubject + " has been emptied");
+		}
+		this.freePlaces = this.students.length;
+	}
+
+	public String theBestStudent() {
+		Student temp = new Student();
+		temp = this.students[0];
+		if (this.freePlaces != this.students.length) {
+			for (int i = 0; i < this.students.length; i++) {
+				if (this.students[i] == null) {
+					break;
+				} else {
+					if (this.students[i].grade > temp.grade) {
+						temp = this.students[i];
+					}
+				}
+
+			}
+			return "The best student in group : " + this.groupSubject + " is " + temp.getName();
+		}
+		return "The group " + this.groupSubject + " is empty and has no students";
+	}
+
+	public void printGroupInfo() {
+		if(this.groupSubject.equals("")){
+			System.out.println("Preparational group");
+		} else {
+		System.out.println("Group " + this.groupSubject);
+		}
+		System.out.println(this.freePlaces + " free places");
+		if (this.freePlaces != this.students.length) {
+			for (int i = 0; i < this.students.length; i++) {
+				if (this.students[i] != null) {
+					this.students[i].printStudentInfo();
+					System.out.println();
+				} else {
+					break;
+				}
+			}
+		} else {
+			System.out.println("Group " + this.groupSubject);
+			System.out.println(this.freePlaces + " free places");
+			System.out.println("Sorry the group is empty");
+			System.out.println();
+		}
+
+	}
+
+}
