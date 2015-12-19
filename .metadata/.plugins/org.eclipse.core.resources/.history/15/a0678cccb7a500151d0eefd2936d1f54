@@ -1,0 +1,17 @@
+package people;
+
+public class Student extends Person {
+	protected double score;
+	
+	Student(Person someone, double score){
+		this.name = someone.getName();
+		this.age = someone.getAge();
+		this.isMale = someone.isMale;
+		this.score = score;
+	}
+	
+	public void showStudentInfo(){
+		this.showPersonInfo();
+		System.out.println("Score : " + this.score);
+	}
+}

@@ -1,0 +1,17 @@
+package people;
+
+public class Student extends Person {
+	double score;
+	
+	Student(Person someone, double score){
+		this.name = someone.name;
+		this.age = someone.age;
+		this.isMale = someone.isMale;
+		this.score = score;
+	}
+	
+	public void showStudentInfo(){
+		this.showPersonInfo();
+		System.out.println("Score : " + this.score);
+	}
+}
